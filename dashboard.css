@@ -1,0 +1,392 @@
+:root{
+    --clr-background: rgb(240, 240, 240);
+    --clr-primary: rgb(43, 43, 161);
+    --clr-card: rgb(255, 255, 255);
+    --clr-text: rgb(0, 0, 0);
+    --clr-grey: grey;
+    --box-shadow: 1px 1px 4px #2e2e2e67;
+}
+
+[dark-theme = "dark"]{
+    --clr-background: rgb(37, 37, 37);
+    --clr-primary: rgb(17, 17, 70);
+    --clr-card: rgba(44, 44, 44, 0.8);
+    --box-shadow: 1px 1px 4px #fffdfd67;
+    --clr-text: rgb(255, 255, 255);
+    --clr-grey: rgb(121, 113, 113);
+}
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: Arial, sans-serif;
+    background-color: var(--clr-background);
+    color: var(--clr-text);
+}
+
+.full-body{
+    width: 100%;
+    height: 100%;
+    max-width: 70rem;
+    margin-inline: auto;
+    padding: 1rem;
+}
+
+.container>div>p{
+    transition: 0.5s solid ease-in-out;
+    cursor: pointer;
+}
+
+.container>div>p:hover{
+    background-color: var(--clr-primary);
+    padding: .3rem;
+    border-radius: .4rem;
+}
+
+
+
+.container{
+    background-color: var(--clr-primary);
+    color: white;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+    border-radius: 10px;
+    text-align:center ;
+    padding: 2rem;
+    align-items: center;
+    margin-top: 1rem;
+
+}
+.container > div{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+.container h2{
+    font-size: 2rem;
+}
+
+.card-container{
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    width: 100%;
+    display: flex;
+    gap: 2rem;
+    margin-top: 4rem;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.card{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: var(--clr-card);
+    border-radius: 10px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 20rem;
+    align-items: center;
+    box-shadow: var(--box-shadow);
+}
+.card > p{
+    font-size: 3rem;
+    color: green;
+}
+#savings > p{
+    color:blue
+}
+#expenses > p{
+    color:red
+}
+.overview-card{
+    width: 100%;
+    max-width: 30rem;
+}
+.overview{
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
+.housing{
+    color:black;
+    padding: 3rem;
+    width: 100%;
+    display:flex;
+    justify-content: space-between;
+    padding-bottom: 1rem;
+}
+
+.overview{
+    background-color: var(--clr-grey);
+    box-shadow: var(--box-shadow);
+    padding: 2rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.overview-card{
+    width: 100%;
+    max-width: 31rem;
+}
+.budget-items{
+     display: flex;
+     flex-direction: column;
+     gap: 1rem;
+}
+.budget-items-heading{
+    justify-content: space-between;
+    display: flex;
+}
+.outer-bar{
+    background-color: rgb(186, 194, 194);
+    border-radius: 2rem;
+    width: 100%;
+    height: 1rem;
+}
+.inner-bar{
+    background-color: rgb(30, 255, 0);
+    border-radius: 2rem;
+    height: 100%;
+    width: 80%;
+}
+
+.space{
+    height: 1rem;
+    background-color:grey;
+    border-radius: 3rem;
+    margin:0rem 3rem;
+    
+}
+
+#house-red{
+    background-color: red;
+    width: 0%;
+    height: 1rem;
+    max-width: 100%;
+    border-radius: 3rem;
+}
+
+.space-food{
+    height: 1rem;
+    background-color:grey;
+    border-radius: 3rem;
+    margin:0rem 3rem;
+    
+}
+#red{
+    height: 1rem;
+    background-color:red;
+    width:0%;
+    max-width: 100%;
+    border-radius: 3rem;
+}
+.space-food{
+    height: 1rem;
+    background-color:grey;
+    border-radius: 3rem;
+    margin:0rem 3rem;
+}
+
+#trans-red{
+    height: 1rem;
+    background-color:red;
+    width:0%;
+    max-width: 100%;
+    border-radius: 3rem;
+}
+.space-entertainment{
+    height: 1rem;
+    background-color:grey;
+    border-radius: 3rem;
+    margin:0rem 3rem;
+}
+#entertainment-red{
+    height: 1rem;
+    background-color:red;
+    width:0%;
+    max-width: 100%;
+    border-radius: 3rem;
+}
+.big-flex{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-around;
+}
+.list{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.wrapper{
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+.red-numbers{
+    text-align: right;
+     color: red;
+     order: 1;
+   
+}
+hr{
+    margin: 1rem 0.5rem;
+    margin-bottom: 0.5rem;
+}
+.green-numbers{
+    color: green;
+    order: 1;
+}
+.close{
+    background-color: var(--clr-primary);
+    color:white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    margin: 1rem;
+}
+
+.trans-form{
+    background-color: var(--clr-card);
+    box-shadow: var(--box-shadow);
+    margin: 2rem;
+    align-items: center;
+    justify-items: center;
+    padding: 2rem;
+    letter-spacing: 2px;
+    line-height: 2rem;
+    border-radius: 2rem;
+    font-family: cursive;
+
+
+}
+
+.trans-form > form{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.trans-form h2{
+    font-size: 2rem;
+}
+
+.trans-form > form > div{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem
+}
+
+.trans-form > form > div > label{
+    font-size: 1rem;
+}
+
+.trans-form > form > div > input,
+.trans-form > form > div > select{
+    padding-block: 0.4rem;
+    padding-inline: 0.3rem;
+    border-radius: 0.2rem;
+    border: 1px solid rgb(164, 164, 207);
+}
+
+.trans-form > form > button{
+    padding-block: 0.6rem;
+    padding-inline: 0.6rem;
+    background-color: var(--clr-primary);
+    border: none;
+    border-radius: 0.2rem;
+    color: #fff;
+    cursor: pointer;
+}
+
+#overlay{
+    background-color: rgba(104, 86, 86, 0.4);
+    width: 100%;
+    height :100%;
+    min-height: 100vh;
+    position: fixed;
+    display:none;
+   overflow-y: scroll;
+}
+
+#overlay>div>form{
+    width: 60%;
+    height: 26rem;
+    align-self: center;
+    justify-self: center;
+    background-color: #fff;
+    margin: 3rem;
+    padding: 2rem;
+    text-align: center;
+    border-radius: 1rem;
+    background-color: rgb(134, 134, 165);
+    font-size: large;
+
+}
+
+#overlay>div>form>div>input{
+    width: 100%;
+
+}
+
+#overlay>p{
+    background-color: RED;
+    width: 3rem;
+    height: 4rem;
+    font-size: 2rem;
+    text-align: center;
+    justify-content:center ;
+    align-content: center;
+    margin: 5rem;
+    margin-bottom: 0%;
+    cursor: pointer;
+    border-radius: .5rem;
+}
+
+#budget-btn{
+    cursor: pointer;
+}
+
+#overlay>div>form>button{
+    /* background-color: rgb(43, 43, 161); */
+    color: rgb(147, 118, 192);
+    border-radius: .5rem;
+    font-weight:bold;
+    font-size: 1.5rem;
+}
+
+#overlay>div>form>h1{
+    color: red;
+}
+
+#transaction-category-container{
+    display: none;
+}
+
+#setBudget{
+    background-color: rgba(104, 86, 86, 0.4);
+    width: 100%;
+    min-height: 100vh;
+    position: fixed;
+    display:none;
+    text-align:center;
+    justify-content:center;
+    align-content: center;
+    color:red;
+    font-size:1rem;
+}
+
+.setBudget>div{
+    background-color:white;
+    margin:1rem;
+   
+}

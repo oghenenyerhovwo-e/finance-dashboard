@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+
+       <div id="overlay">
+         <p id="cancel-btn"><strong>X</strong></p>
+            <div>
+
+                
+                <form>
+
+                    <h1>MONTHLY BUDGET</h1>
+                    <div>
+                      <label for="">Housing</label><br>
+                     <input type="number" id="house-budget-set">
+                    </div><br>
+
+                    <div>
+                     <label for="">food</label><br>
+                     <input type="number" id="food-budget-set">
+                    </div><br>
+
+                    <div>
+                     <label for="">Transportation</label><br>
+                     <input type="number" id="trans-budget-set">
+                    </div><br>
+
+                    <div>
+                     <label for="">Entertainment</label><br>
+                     <input type="number" id="entertain-budget-set">
+                    </div><br>
+
+
+                    <button type="submit" id="set-budget-btn">set budget</button>
+                </form>
+            </div>
+        </div>
+        
+        
+    <div class="setBudget" id="setBudget">
+        <div>
+        <h2>Quick Reminder to Set your Budget
+        </h2>
+        <button>SET BUDGET</button></div>
+    </div>
+    <div class="full-body">
+        <div class="container">
+            <h2>Financial Dashboard</h2>
+            <div>
+                <p>Home</p>
+                <p id="budget-btn">Budget</p>
+                <p>Reports</p>
+                <p id="setting">settings</p>
+            </div>
+        </div>
+        <div class="card-container">
+            <div class="card">
+                <h1>Total Income</h1>
+                <p><strong>$<span id="income-amount">4250.00</span></strong></p>
+                <footer>+5% from last month</footer>
+            </div>
+            <div class="card" id="expenses">
+                <h1>Total Expenses</h1>
+                <p><strong>$<span id="expenses-amount">2870.00</span></strong></p>
+                <footer>-2% from last month</footer>
+            </div>
+            <div class="card" id="savings">
+                <h1>Savings</h1>
+                <p><strong>$<span id="savings-amount">1380.00</span></strong></p>
+                <footer>+15% from last month</footer>
+            </div>
+        </div>
+        <div class="big-flex">
+            <div class=overview-card>
+                <div class="overview">
+                    <h2>Budget Overview</h2>
+                    <hr>
+                    <div class="budget-items">
+                        <div class="budget-items-heading">
+                            <p>Housing</p>
+                            <p>
+                                $<span id="budget-housing-actual-amount">0</span>/
+                                $<span id="budget-housing-limit-amount">0</span> 
+                            </p>
+                        </div>
+                        <div class="outer-bar">
+                            <div id="housing-inner-bar" class="inner-bar"></div>
+                        </div>
+                    </div>
+                    <div class="budget-items">
+                        <div class="budget-items-heading">
+                            <p>Food</p>
+                            <p>
+                                $<span id="budget-food-actual-amount">0</span>/
+                                $<span id="budget-food-limit-amount">0</span> 
+                            </p>
+                        </div>
+                        <div class="outer-bar">
+                            <div id="food-inner-bar" class="inner-bar"></div>
+                        </div>
+                    </div>
+                    <div class="budget-items">
+                        <div class="budget-items-heading">
+                            <p>Transportation</p>
+                            <p>
+                                $<span id="budget-transport-actual-amount">0</span>/
+                                $<span id="budget-transport-limit-amount">0</span> 
+                            </p>
+                        </div>
+                        <div class="outer-bar">
+                            <div id="transport-inner-bar" class="inner-bar"></div>
+                        </div>
+                    </div>
+                    <div class="budget-items">
+                        <div class="budget-items-heading">
+                            <p>Entertainment</p>
+                            <p>
+                                $<span id="budget-entertainment-actual-amount">0</span>/
+                                $<span id="budget-entertainment-limit-amount">0</span> 
+                            </p>
+                        </div>
+                        <div class="outer-bar">
+                            <div id="entertainment-inner-bar" class="inner-bar"></div>
+                        </div>
+                    </div>                 
+                </div>
+            </div>
+            <div  class=overview-card>
+                <div class="overview">
+                    <div><h2>Recent Transactions</h2></div>
+                    <hr>
+                    <div id="transactions-container">
+                        
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="trans-form">
+            <form>
+                <h2> Enter New Transaction</h2>
+                <div>
+                    <label>Type of Transaction:</label>
+                    <select id="transanction-type">
+                        <option required disabled selected>select transaction type</option>
+                        <option>Income</option>
+                        <option>Expenses</option>
+                    </select>
+                </div>
+                  <div id="transaction-category-container">
+                        <label>categories</label>
+                        <select id="transaction-category"> 
+                            <option selected disabled required>Enter your transaction categories</option>
+                            <option>Housing</option>
+                            <option> Food</option>
+                            <option>Transportation</option>
+                            <option>Entertainment</option>
+                        </select>
+                </div>
+
+
+                <div >
+                    <label>Name of Transaction:</label>
+                    <input required id="transaction-name" placeholder="Enter name of your transaction" type="text">
+                </div>
+                 <div>
+                    <label>Amount:</label>
+                    <input min="1" required id="transaction-amount" placeholder="Enter amount" type="number">
+                </div>
+                <button id="submit-btn" type="submit" class="btn">Enter New</button>
+            </form>
+        </div>
+        <div class="close">
+            <p>Financial Dashboard@2023|Track your finances with ease</p>
+        </div>
+    </div>
+    <svg></svg>
+    <i></i>
+
+
+    <script type="module" src="./dashboard.js"></script>
+    <script src="budget.js"></script>
+    <script type="module" src="./elements.js"></script>
+    <script type="module" src="./transaction.js"></script>
+    <script type="module" src="./theme.js"></script>
+    <script type="module" src="./fetchData.js"></script>
+    <script type="module" src="./functions.js"></script>
+</body>
+</html>
