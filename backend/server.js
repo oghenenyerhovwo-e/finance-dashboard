@@ -10,6 +10,10 @@ app.get("/", (request, response)=>{
     response.send("My home route")
 })
 
+app.post("/", (request, response)=>{
+    response.send("My home route")
+})
+
 app.get("/transactions", (request, response)=>{
 
 
