@@ -26,7 +26,7 @@ import {
 import { addTransactionElementFunc } from "./functions.js"
 
 
-const submitForm = event => {
+const submitForm = async event => {
     event.preventDefault()
     const transactionType = transactionTypeElement.value
     const transactionName = transactionNameElement.value
@@ -40,7 +40,24 @@ const submitForm = event => {
     let expensesAmount = Number(expensesAmountElement.innerHTML)
     const oldSavingsAmount = Number(savingsAmountElement.innerHTML)
 
-    console.log(budgetAmountElement)
+
+    const transactionData = {
+        transactionType: transactionType,
+        transactionName: transactionName,
+        transactionDate: transactionDate,
+        transactionAmount: transactionAmount
+    }
+    
+    await fetch("http://localhost:3000/transactions", {
+        method: "POST",
+        body: JSON.stringify(transactionData),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.log(error))
 
      let budgetAmount=Number(budgetAmountElement.innerHTML)
      let foodBudgetAmount=Number(foodBudgetAmountElement.innerHTML)
@@ -53,28 +70,7 @@ const submitForm = event => {
      let transLimit=Number(transLimitElement.innerHTML)
      let entertainLimit=Number(entertainLimitElement.innerHTML)
 
-    
-    if(transactionType==="select transaction type" ){
-        return alert("Please select a transaction type")
-    }
-    else if(transactionName==="" ){
-        return alert("Please enter a transaction name")
-    }
-    else if(transactionAmount <= 0 ){
-        return alert("Please enter a valid amount")
-    }
 
-     else if(categoryElement === "Enter your transaction categories" && transactionType === "Expenses"){
-     return alert("select a category")
-
-    }
-    
-
-    else if (transactionType==="Expenses"&& transactionAmount>oldSavingsAmount) {
-        return alert("Insufficient Funds")
-    }
-    
-    else{}
 
     if (transactionType === "Income") {
         incomeAmount=incomeAmount+transactionAmount
@@ -135,6 +131,27 @@ else {}
 
        
 
+        if(transactionType==="select transaction type" ){
+        return alert("Please select a transaction type")
+    }
+    else if(transactionName==="" ){
+        return alert("Please enter a transaction name")
+    }
+    else if(transactionAmount <= 0 ){
+        return alert("Please enter a valid amount")
+    }
+
+    else if(categoryElement === "Enter your transaction categories" && transactionType === "Expenses"){
+        return alert("select a category")
+
+    }
+    
+
+    else if (transactionType==="Expenses"&& transactionAmount>oldSavingsAmount) {
+        return alert("Insufficient Funds")
+    }
+    
+    else{}
 
 
     if(categoryElement ==="Food" && transactionType === "Expenses"){

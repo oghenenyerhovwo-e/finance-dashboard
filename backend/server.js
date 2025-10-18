@@ -3,19 +3,19 @@ import cors from "cors"
 
 const app = express()
 
+app.use(express.json())
 app.use(cors())
 
+app.post("/transactions", (request, response) => {
+  response.json("Data was received successfully")
+})
 
 app.get("/", (request, response)=>{
     response.send("My home route")
 })
 
-app.post("/", (request, response)=>{
-    response.send("My home route")
-})
 
 app.get("/transactions", (request, response)=>{
-
 
     response.json({
       transactions: [
@@ -53,6 +53,7 @@ app.get("/transactions", (request, response)=>{
       message: "All transaction data has been sent"
     })
 })
+
 
 
 app.listen(3000, () => {

@@ -1,6 +1,6 @@
 import { addTransactionElementFunc } from "./functions.js"
 
-let transactionData;
+let transactionData = [];
 
 await fetch("http://localhost:3000/transactions")
     .then(response => response.json())
