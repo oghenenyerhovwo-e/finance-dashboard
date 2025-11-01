@@ -4,206 +4,66 @@ import {
     transactionNameElement,
     transactionAmountElement,
     transactionCategoryContainerElement,
-    incomeAmountElement,
-    expensesAmountElement,
-    savingsAmountElement,
     transactionCategoryElement,
-    budgetAmountElement,
-    transBudgetAmountElement,
-    foodBudgetAmountElement,
-    entertainBudgetAmountElement,
-    budgetLimitElement,
-    foodLimitElement,
-    transLimitElement,
-    entertainLimitElement,
-    color,
-    transColor,
-    EntertainColor,
-    houseColor,
-    setBudgetElement,
 } from "./elements.js"
 
-import { addTransactionElementFunc } from "./functions.js"
+import { addTransactionElementFunc } from "./functions/addTransactionElementFunc.js"
 
+import { updateTransactionBalance } from "./functions/updateTransaction.js"
+
+import { postTransaction } from "./functions/postTransactions.js"
+
+import { checkBudgetLimit } from "./functions/checkBudgetLimitFunc.js"
+
+import { updateBudget } from "./functions/updateBudgetFunc.js"
+
+import { checkValidInput } from "./functions/checkValidInput.js"
 
 const submitForm = async event => {
     event.preventDefault()
+
     const transactionType = transactionTypeElement.value
     const transactionName = transactionNameElement.value
     const transactionDate = Intl.DateTimeFormat("en-Us", {month: "short", day: "numeric", year: "numeric"}).format(new Date())
-    const categoryElement=transactionCategoryElement.value
-
+    const transactionCategory=transactionCategoryElement.value
     const transactionAmount=Number(transactionAmountElement.value)
-  
 
-    let incomeAmount = Number(incomeAmountElement.innerHTML)
-    let expensesAmount = Number(expensesAmountElement.innerHTML)
-    const oldSavingsAmount = Number(savingsAmountElement.innerHTML)
+    const validInputResponse = checkValidInput(transactionType,transactionName,transactionAmount, transactionCategory,)
+    if(validInputResponse.transactionContinue === false){
+        return
+    }
 
+    const checkBudgetResponse = checkBudgetLimit(transactionType,)
+
+    if(checkBudgetResponse.transactionContinue === false){
+        return
+    }
 
     const transactionData = {
         transactionType: transactionType,
         transactionName: transactionName,
         transactionDate: transactionDate,
-        transactionAmount: transactionAmount
-    }
-    
-    await fetch("http://localhost:3000/transactions", {
-        method: "POST",
-        body: JSON.stringify(transactionData),
-        headers: {
-            "Content-Type": "application/json"
-        }
-    })
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.log(error))
-
-     let budgetAmount=Number(budgetAmountElement.innerHTML)
-     let foodBudgetAmount=Number(foodBudgetAmountElement.innerHTML)
-     let transBudgetAmount=Number(transBudgetAmountElement.innerHTML)
-     let entertainBudgetAmount=Number(entertainBudgetAmountElement.innerHTML)
-
-
-     let budgetLimit=Number(budgetLimitElement.innerHTML)
-     let foodLimit=Number(foodLimitElement.innerHTML)
-     let transLimit=Number(transLimitElement.innerHTML)
-     let entertainLimit=Number(entertainLimitElement.innerHTML)
-
-
-
-    if (transactionType === "Income") {
-        incomeAmount=incomeAmount+transactionAmount
+        transactionAmount: transactionAmount,
+        transactionCategory: transactionCategory,
     }
 
-    else{
-        expensesAmount=expensesAmount+transactionAmount
+    const postTransactionResponse = await postTransaction(transactionData)
+
+    if(postTransactionResponse.transactionContinue === false){
+        return alert("There was an error creating this transaction")
     }
- if ((budgetLimit === 0 || entertainLimit === 0 || transLimit === 0 || foodLimit === 0) && transactionType === "Income") {
-    
-    alert("Quick Reminder to set your monthly budget")
-}
-else if ((budgetLimit === 0 || entertainLimit === 0 || transLimit === 0 || foodLimit === 0) && transactionType === "Expenses") {
-    return alert("To proceed with Transactions kindly set a your monthly budget")
-    
-    return alert(setBudgetElement.style.display="block")
-    
-}
+    const createdTransaction = postTransactionResponse.transaction
 
-else {}
-    const savingsAmount = incomeAmount-expensesAmount
+    updateBudget(createdTransaction.transactionType, createdTransaction.transactionCategory,createdTransaction.transactionAmount)
 
-    incomeAmountElement.innerHTML = incomeAmount
-    expensesAmountElement.innerHTML = expensesAmount
-    savingsAmountElement.innerHTML = savingsAmount
+    updateTransactionBalance(createdTransaction.transactionType, createdTransaction.transactionAmount)
     
+    addTransactionElementFunc(createdTransaction.transactionName, createdTransaction.transactionDate, createdTransaction.transactionAmount, createdTransaction.transactionType)
 
     transactionNameElement.value = ""
-    transactionAmountElement.value = ""
-    
-    addTransactionElementFunc(transactionName, transactionDate, transactionAmount, transactionType)
-
-
-     if (transactionType === "Expenses" && categoryElement ==="Housing" ) {
-        budgetAmount=budgetAmount+transactionAmount
-    }
-    else if(transactionType === "Expenses" && categoryElement ==="Food"){
-        foodBudgetAmount=foodBudgetAmount+transactionAmount
-    }
-
-    else if(transactionType === "Expenses" && categoryElement ==="Transportation"){
-        transBudgetAmount=transBudgetAmount+transactionAmount
-    }
-
-     else if(transactionType === "Expenses" && categoryElement ==="Entertainment"){
-        entertainBudgetAmount=entertainBudgetAmount+transactionAmount
-    }    
-
-    else{}
-
-
- 
-
-        budgetAmountElement.innerHTML=budgetAmount
-        entertainBudgetAmountElement.innerHTML=entertainBudgetAmount
-        transBudgetAmountElement.innerHTML=transBudgetAmount
-        foodBudgetAmountElement.innerHTML=foodBudgetAmount
-
-       
-
-        if(transactionType==="select transaction type" ){
-        return alert("Please select a transaction type")
-    }
-    else if(transactionName==="" ){
-        return alert("Please enter a transaction name")
-    }
-    else if(transactionAmount <= 0 ){
-        return alert("Please enter a valid amount")
-    }
-
-    else if(categoryElement === "Enter your transaction categories" && transactionType === "Expenses"){
-        return alert("select a category")
-
-    }
-    
-
-    else if (transactionType==="Expenses"&& transactionAmount>oldSavingsAmount) {
-        return alert("Insufficient Funds")
-    }
-    
-    else{}
-
-
-    if(categoryElement ==="Food" && transactionType === "Expenses"){
-       const percentage=(transactionAmount/foodLimit)*100
-        color.style.width= percentage + "%";
-    }
-
-     else if(categoryElement ==="Transportation" && transactionType === "Expenses"){
-       const percentage=(transactionAmount/transLimit)*100
-        transColor.style.width= percentage + "%";
-    }
-    else if(categoryElement ==="Entertainment" && transactionType === "Expenses"){
-       const percentage=(transactionAmount/entertainLimit)*100
-        EntertainColor.style.width= percentage + "%";
-    }
-
-    else if(categoryElement ==="Housing" && transactionType === "Expenses"){
-        const percentage=(budgetAmount/budgetLimit)*100
-        houseColor.style.width= percentage + "%";
-    }
-    else{}
-
+    transactionAmountElement.value = ""  
      
-     
-     
-   
-
-
     alert("Transaction was updated successfully")
-
-    if(budgetAmount>=budgetLimit && transactionType === "Expenses"){
-            alert (`You've exceeded your budget of $${budgetLimit}`)
-
-        }
-
-    else if(foodBudgetAmount>=foodLimit && transactionType === "Expenses"){
-            alert (`You've exceeded your budget of $${foodLimit}`)
-
-        }
-
-        else if(transBudgetAmount>=transLimit && transactionType === "Expenses"){
-            alert (`You've exceeded your budget of $${transLimit}`)
-
-        }
-
-    else if(entertainBudgetAmount>=entertainLimit && transactionType === "Expenses"){
-           alert (`You've exceeded your budget of $${entertainLimit}`)
-
-        }
-
-    else{}
-
    
 }
 

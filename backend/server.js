@@ -3,7 +3,7 @@ import cors from "cors"
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
-import TransactionModel  from "./model.js"
+import TransactionModel  from "./models/transactionModel.js"
 
 const app = express()
 
@@ -17,15 +17,14 @@ await mongoose.connect(process.env.MONGO_URI)
 
 app.post("/transactions", async (request, response) => {
   const newTransaction = request.body
-
   try {
     const createdTransaction = await TransactionModel.create(newTransaction)
 
     response.status(200).json({createdTransaction: createdTransaction})
+
   } catch (error) {
     response.status(404).json("There was an error creating new transactions")
   }
-  
 })
 
 app.get("/", (request, response)=>{

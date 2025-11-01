@@ -1,4 +1,4 @@
-import { transactionParentElement } from "./elements.js"
+import { transactionParentElement } from "../elements.js"
 
 export const addTransactionElementFunc = (
     transactionName, 

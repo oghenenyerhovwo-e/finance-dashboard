@@ -1,48 +1,51 @@
-const budgetButtonElement=document.getElementById("budget-btn")
-const overlayElement=document.getElementById("overlay")
-
-const houseBudgetSet=document.getElementById("house-budget-set")
-const foodBudgetSet=document.getElementById("food-budget-set")
-const transBudgetSet=document.getElementById("trans-budget-set")
-const entertainBudgetSet=document.getElementById("entertain-budget-set")
-
-const houseBudgetLimit=document.getElementById("budget-limit")
-const foodBudgetLimit=document.getElementById("food-budget-limit")
-const transBudgetLimit=document.getElementById("trans-budget-limit")
-const entertainBudgetLimit=document.getElementById("entertain-budget-limit")
-
-
-
-const cancelButtonElement=document.getElementById("cancel-btn")
-const setBudgetButtonElement=document.getElementById("set-budget-btn")
+import {
+    budgetButtonElement,
+    setBudgetOverlayElement,
+    houseBudgetSetForm,
+    foodBudgetSetForm,
+    transBudgetSetForm,
+    entertainBudgetSetForm,
+    houseBudgetLimitElement,
+    foodBudgetLimitElement,
+    transportationBudgetLimitElement,
+    entertainmentBudgetLimitElement,
+    cancelButtonElement,
+    setBudgetButtonElement,
+} from "./elements.js"
 
 const budgetButton=()=>{
-    overlayElement.style.display="block";
+    setBudgetOverlayElement.style.display="block";
 }
 
-budgetButtonElement.addEventListener("click",budgetButton)
 
 const cancelButton=()=>{
-        overlayElement.style.display="none";
+        setBudgetOverlayElement.style.display="none";
 
 }
-
-cancelButtonElement.addEventListener("click",cancelButton)
 
 const setBudgetButton=event=>{
     event.preventDefault()
-    houseBudgetLimit.innerHTML=houseBudgetSet.value
-    foodBudgetLimit.innerHTML=foodBudgetSet.value
-    transBudgetLimit.innerHTML=transBudgetSet.value
-    entertainBudgetLimit.innerHTML=entertainBudgetSet.value
+    
+    const houseBudgetAmount = houseBudgetSetForm.value
 
-    if(houseBudgetSet.value<=0||foodBudgetSet.value<=0||transBudgetSet.value<=0||entertainBudgetSet.value<=0){
+    const houseBudgetData = {
+        
+    }
+
+
+    houseBudgetLimitElement.innerHTML=houseBudgetAmount
+    foodBudgetLimitElement.innerHTML=foodBudgetSetForm.value
+    transportationBudgetLimitElement.innerHTML=transBudgetSetForm.value
+    entertainmentBudgetLimitElement.innerHTML=entertainBudgetSetForm.value
+
+    if(houseBudgetSetForm.value<=0||foodBudgetSetForm.value<=0||transBudgetSetForm.value<=0||entertainBudgetSetForm.value<=0){
         alert("Please Enter a Valid Amount")
     }
     else{
         alert("Your Monthly Budget has been Successfully updated")
     }
-
 }
-setBudgetButtonElement.addEventListener("click",setBudgetButton)
 
+setBudgetButtonElement.addEventListener("click",setBudgetButton)
+budgetButtonElement.addEventListener("click",budgetButton)
+cancelButtonElement.addEventListener("click",cancelButton)

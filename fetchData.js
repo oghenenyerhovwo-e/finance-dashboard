@@ -1,4 +1,4 @@
-import { addTransactionElementFunc } from "./functions.js"
+import { addTransactionElementFunc } from "./functions/addTransactionElementFunc.js"
 
 let transactionData = [];
 

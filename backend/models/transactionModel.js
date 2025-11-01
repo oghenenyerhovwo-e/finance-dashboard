@@ -7,6 +7,7 @@ const transactionSchema = new Schema({
     transactionName: String,
     transactionDate: Date,
     transactionAmount: Number,
+    transactionCategory: String,
 });
 
 const Transaction = mongoose.model('Transaction', transactionSchema);
