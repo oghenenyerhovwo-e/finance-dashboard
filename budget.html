@@ -4,8 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="budget.css">
 </head>
 <body>
-    Budget
+    <div id="set-budget-overlay">
+         <p id="cancel-btn"><strong>X</strong></p>
+            <div>
+                <form>
+                    <h1>MONTHLY BUDGET</h1>
+
+                    <div>
+                      <label for="">Budget Name</label><br>
+                     <input id="name-budget-set">
+                    </div><br>
+
+                    <div>
+                      <label for="">Housing</label><br>
+                     <input type="number" id="house-budget-set">
+                    </div><br>
+
+                    <div>
+                     <label for="">food</label><br>
+                     <input type="number" id="food-budget-set">
+                    </div><br>
+
+                    <div>
+                     <label for="">Transportation</label><br>
+                     <input type="number" id="trans-budget-set">
+                    </div><br>
+
+                    <div>
+                     <label for="">Entertainment</label><br>
+                     <input type="number" id="entertain-budget-set">
+                    </div><br>
+
+
+                    <button type="submit" id="set-budget-btn">set budget</button>
+                </form>
+            </div>
+        </div>
+    <div class="budget-container">
+        <div id="budget-container-list" class="budget-container-list">
+
+        </div>
+        <button id="budget-btn">Add New Budget</button>
+        <button id="choose-budget-btn">Choose Budget</button>
+    </div>
+
+
+    <script type="module" src="./functions/getBudget.js"></script>
+    <script type="module" src="./budget.js"></script>
 </body>
 </html>

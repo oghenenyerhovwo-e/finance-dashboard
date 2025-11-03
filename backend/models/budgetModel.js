@@ -3,6 +3,7 @@ import mongoose from "mongoose"
 const Schema = mongoose.Schema;
 
 const budgetSchema = new Schema({
+    budgetName: String,
     houseBudget: Number,
     foodBudget: Number,
     transportBudget: Number,

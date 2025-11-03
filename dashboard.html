@@ -6,38 +6,7 @@
     <title>Financial Dashboard</title>
     <link rel="stylesheet" href="dashboard.css">
 </head>
-<body>
-       <div id="set-budget-overlay">
-         <p id="cancel-btn"><strong>X</strong></p>
-            <div>
-                <form>
-                    <h1>MONTHLY BUDGET</h1>
-                    <div>
-                      <label for="">Housing</label><br>
-                     <input type="number" id="house-budget-set">
-                    </div><br>
-
-                    <div>
-                     <label for="">food</label><br>
-                     <input type="number" id="food-budget-set">
-                    </div><br>
-
-                    <div>
-                     <label for="">Transportation</label><br>
-                     <input type="number" id="trans-budget-set">
-                    </div><br>
-
-                    <div>
-                     <label for="">Entertainment</label><br>
-                     <input type="number" id="entertain-budget-set">
-                    </div><br>
-
-
-                    <button type="submit" id="set-budget-btn">set budget</button>
-                </form>
-            </div>
-        </div>
-        
+<body>       
         
     <div class="setBudget" id="setBudget">
         <div>
@@ -50,9 +19,9 @@
             <h2>Financial Dashboard</h2>
             <div>
                 <a  href="">Home</a>
-                <a href="budget.html" id="budget-btn">Budget</a>
-                <a>Reports</a>
-                <a id="setting">settings</a>
+                <a href="budget.html">Budget</a>
+                <a href="">Reports</a>
+                <a href="" id="setting">settings</a>
             </div>
         </div>
         <div class="card-container">
@@ -176,18 +145,13 @@
             <p>Financial Dashboard@2023|Track your finances with ease</p>
         </div>
     </div>
-    <svg></svg>
-    <i></i>
-
 
     <script type="module" src="./dashboard.js"></script>
-    <script type="module" src="./budget.js"></script>
     <script type="module" src="./elements.js"></script>
     <script type="module" src="./transaction.js"></script>
     <script type="module" src="./theme.js"></script>
     <script type="module" src="./fetchData.js"></script>
     <script type="module" src="./functions/addTransactionElementFunc.js"></script>
     <script type="module" src="./functions/updateTransaction.js"></script>
-    <script type="module" src="./functions/getBudget.js"></script>
 </body>
 </html>

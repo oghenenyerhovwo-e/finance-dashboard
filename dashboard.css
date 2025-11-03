@@ -16,7 +16,6 @@
     --clr-grey: rgb(121, 113, 113);
 }
 
-setBudget
 *{
     margin: 0;
     padding: 0;
@@ -36,18 +35,18 @@ body{
     padding: 1rem;
 }
 
-.container>div>p{
+.container>div>a{
     transition: 0.5s solid ease-in-out;
     cursor: pointer;
+    color: white;
+    text-decoration: none;
 }
 
-.container>div>p:hover{
-    background-color: var(--clr-primary);
+.container>div>a:hover{
+    background-color: rgb(188, 188, 212);
     padding: .3rem;
     border-radius: .4rem;
 }
-
-
 
 .container{
     background-color: var(--clr-primary);
@@ -62,7 +61,6 @@ body{
     padding: 2rem;
     align-items: center;
     margin-top: 1rem;
-
 }
 .container > div{
     display: flex;
