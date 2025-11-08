@@ -18,7 +18,14 @@ import {
 
 import { postBudget } from "./functions/postBudget.js";
 import { getBudgets } from "./functions/getBudgets.js";
+
+
+let selectedBudgetId = ""
+
+
 const budgetButton=()=>{
+    console.log("works")
+    console.log(setBudgetOverlayElement)
     setBudgetOverlayElement.style.display="block";
 }
 
@@ -28,13 +35,57 @@ const cancelButton=()=>{
 
 }
 
-const addBudgetHTML = (budget) => {
-    const budgetElement = document.createElement("div")
-    budgetElement.classList.add("budget-list-card")
+const addSelectedBudgetCardClass = (budgetElement, budgetId) => {
+    const addSelectedClass = () => {
+        const allBudgetCards = document.getElementsByClassName("budget-card")
+
+        for (let index = 0; index < allBudgetCards.length; index++) {
+            const budgetCard = allBudgetCards[index];
+            budgetCard.classList.remove("selected")
             
-    const budgetNameElement = document.createElement("h2")
-    budgetNameElement.innerHTML = budget.budgetName
-    budgetElement.append(budgetNameElement)
+        }
+
+        budgetElement.classList.add("selected")
+
+        selectedBudgetId = budgetId
+    }
+    budgetElement.addEventListener("click", addSelectedClass)
+}
+
+const addBudgetHTML = (budget) => {
+   const budgetId = budget._id
+
+    const budgetElement = document.createElement("div")
+    budgetElement.classList.add("budget-card")
+
+    budgetElement.innerHTML = `
+                <div class="selected-indicator">
+                    <i class="fas fa-check"></i>
+                </div>
+                <div class="budget-card-header">
+                    <h3 class="budget-card-title">${budget.budgetName}</h3>
+                </div>
+                <div class="budget-card-details">
+                    <div class="budget-item">
+                        <span class="budget-item-label">Housing</span>
+                        <span class="budget-item-value">$${budget.houseBudget}</span>
+                    </div>
+                    <div class="budget-item">
+                        <span class="budget-item-label">Food</span>
+                        <span class="budget-item-value">$${budget.foodBudget}</span>
+                    </div>
+                    <div class="budget-item">
+                        <span class="budget-item-label">Transportation</span>
+                        <span class="budget-item-value">$${budget.transportBudget}</span>
+                    </div>
+                    <div class="budget-item">
+                        <span class="budget-item-label">Entertainment</span>
+                        <span class="budget-item-value">$${budget.entertainmentBudget}</span>
+                    </div>
+                </div>`
+
+    addSelectedBudgetCardClass(budgetElement, budgetId)
+
     listBudgetContainer.append(budgetElement)
 }
 
@@ -83,14 +134,17 @@ const listBudgets = async () => {
 
     for(let index = 0; index < allBudgets.length; index++){
             const budget = allBudgets[index]
-            addBudgetHTML(budget)   
+            addBudgetHTML(budget)
     }       
 }
 
 listBudgets()
 
 const chooseBudgetFunction = ( ) => {
-    window.location.href = "dashboard.html?budgetId=6905feec4d8cddb7ffb0f75d"
+    if(selectedBudgetId === ""){
+        return alert("Please, select a budget")
+    }
+    window.location.href = `dashboard.html?budgetId=${selectedBudgetId}`
 }
 
 chooseBudgetButton.addEventListener("click", chooseBudgetFunction)

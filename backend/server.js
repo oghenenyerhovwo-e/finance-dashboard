@@ -71,6 +71,18 @@ app.get("/budgets", async (request, response)=>{
 })
 
 
+app.get("/budgets/:budgetId", async (request, response)=>{
+    try {
+      const budgetId = request.params.budgetId
+      // const budgetId = 
+      const budget = await BudgetModel.findById(budgetId)
+
+      response.status(200).json({budget: budget})
+    } catch (error) {
+      response.status(404).json("There was an error getting the budget")
+    }
+})
+
 
 app.listen(3000, () => {
   console.log("server is running at port 3000")

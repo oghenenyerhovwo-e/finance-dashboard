@@ -8,52 +8,64 @@
     <link rel="stylesheet" href="budget.css">
 </head>
 <body>
+    <!-- Budget Set Overlay -->
     <div id="set-budget-overlay">
-         <p id="cancel-btn"><strong>X</strong></p>
-            <div>
-                <form>
-                    <h1>MONTHLY BUDGET</h1>
+        <p id="cancel-btn"><strong>X</strong></p>
+        <div>
+            <form id="budget-form">
+                <h1>MONTHLY BUDGET</h1>
 
-                    <div>
-                      <label for="">Budget Name</label><br>
-                     <input id="name-budget-set">
-                    </div><br>
+                <div>
+                    <label for="name-budget-set">Budget Name</label>
+                    <input id="name-budget-set" placeholder="e.g., November Budget">
+                </div>
 
-                    <div>
-                      <label for="">Housing</label><br>
-                     <input type="number" id="house-budget-set">
-                    </div><br>
+                <div>
+                    <label for="house-budget-set">Housing ($)</label>
+                    <input type="number" id="house-budget-set" placeholder="Enter amount">
+                </div>
 
-                    <div>
-                     <label for="">food</label><br>
-                     <input type="number" id="food-budget-set">
-                    </div><br>
+                <div>
+                    <label for="food-budget-set">Food ($)</label>
+                    <input type="number" id="food-budget-set" placeholder="Enter amount">
+                </div>
 
-                    <div>
-                     <label for="">Transportation</label><br>
-                     <input type="number" id="trans-budget-set">
-                    </div><br>
+                <div>
+                    <label for="trans-budget-set">Transportation ($)</label>
+                    <input type="number" id="trans-budget-set" placeholder="Enter amount">
+                </div>
 
-                    <div>
-                     <label for="">Entertainment</label><br>
-                     <input type="number" id="entertain-budget-set">
-                    </div><br>
+                <div>
+                    <label for="entertain-budget-set">Entertainment ($)</label>
+                    <input type="number" id="entertain-budget-set" placeholder="Enter amount">
+                </div>
 
-
-                    <button type="submit" id="set-budget-btn">set budget</button>
-                </form>
-            </div>
+                <button type="submit" id="set-budget-btn">Set Budget</button>
+            </form>
         </div>
-    <div class="budget-container">
-        <div id="budget-container-list" class="budget-container-list">
-
-        </div>
-        <button id="budget-btn">Add New Budget</button>
-        <button id="choose-budget-btn">Choose Budget</button>
     </div>
 
+    <!-- Main Content -->
+    <div class="budget-container">
+        <div class="budget-header">
+            <h1>Budget Management</h1>
+            <div class="budget-actions">
+                <button id="budget-btn" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Add New Budget
+                </button>
+                <button id="choose-budget-btn" class="btn btn-secondary">
+                    <i class="fas fa-check"></i> Use Selected Budget
+                </button>
+            </div>
+        </div>
+
+        <div id="budget-container-list" class="budget-container-list">
+                
+        </div>
+    </div>
 
     <script type="module" src="./functions/getBudget.js"></script>
     <script type="module" src="./budget.js"></script>
+     <script src="https://kit.fontawesome.com/7d9d7d63e1.js" crossorigin="anonymous"></script>
 </body>
 </html>
